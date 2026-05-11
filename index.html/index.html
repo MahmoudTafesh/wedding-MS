@@ -203,24 +203,23 @@
                      <!-- 
                         <span style="font-size: 1.8rem; font-weight: bold;">16</span>
                         -->
-                        <span> مساءاً الساعة 05:30</span>
+                        <span> الساعة 05:30 مساءاً</span>
                     </div>
                 </div>
             </div>
 
-            <div class="countdown-container" id="countdown">
-                <div class="countdown-item"><span class="countdown-num" id="days">00</span><span class="countdown-label">يوم</span></div>
-                <div class="countdown-item"><span class="countdown-num" id="hours">00</span><span class="countdown-label">ساعة</span></div>
-                <div class="countdown-item"><span class="countdown-num" id="minutes">00</span><span class="countdown-label">دقيقة</span></div>
-                <div class="countdown-item"><span class="countdown-num" id="seconds">00</span><span class="countdown-label">ثانية</span></div>
-            </div>
-
+<div style="text-align:center; font-size:30px; margin-top:20px;">
+    <h2>الوقت المتبقي للفرح</h2>
+    <div id="countdown"></div>
+</div>
+            
+        
             <div class="event-section">
                 <span class="event-title"> سهرة الشباب أمام منزل والد العريس النصيرات مخيم 2 أرض ابو سليم الشرقية</span>
                 <div class="date-grid">
                     <span>الجمعة</span>
                     <span style="font-weight: bold;">15 مايو</span>
-                    <span>بعد صلاة العششاء</span>
+                    <span>بعد صلاة العشاء</span>
                 </div>
             </div>
 
@@ -329,5 +328,32 @@
         }, 1000);
     </script>
 
+<script>
+const weddingDate = new Date("May 16, 2026 17:30:00").getTime();
+
+const timer = setInterval(function () {
+
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+    document.getElementById("countdown").innerHTML =
+        days + " يوم " +
+        hours + " ساعة " +
+        minutes + " دقيقة " +
+        seconds + " ثانية ";
+
+    if (distance < 0) {
+        clearInterval(timer);
+        document.getElementById("countdown").innerHTML = "🎉 بدأ الفرح 🎉";
+    }
+
+}, 1000);
+</script>
+    
 </body>
 </html>
